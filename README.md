@@ -1,4 +1,8 @@
 # ERP-NEXT Installation Method
+Alright, i don't know if im the only one here who has issues with setting up ERPNEXT or there are others but heres what worked for me.
+
+Your gonna need Ubuntu 22 for this. Minimal install works didn't even bother to update anything 
+
 ## Step 1: Install git
 ```bash
 sudo apt install git -y
@@ -235,21 +239,3 @@ bench start
 ```
 
 Congratulations, you have installed bench on to your system.
-
-## Step 9:
-Install git
-```bash
-
-```
-
-## Step 10:
-Install git
-```bash
-
-```
-
-## Step 11:
-Install git
-```bash
-
-```
