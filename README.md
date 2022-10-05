@@ -1,6 +1,12 @@
 # ERP-NEXT Installation Method
 Alright, i don't know if im the only one here who has issues with setting up ERPNEXT or there are others but heres what worked for me.
 
+## Get an OVA from Bitnami
+[ERPNEXT OVA from Bitnami](https://bitnami.com/stack/erpnext/virtual-machine)
+
+**or**
+
+## Go through the painful installation process
 Your gonna need Ubuntu 22 for this. Minimal install works didn't even bother to update anything 
 
 ## Step 1: Install git
@@ -204,10 +210,12 @@ sudo apt-get install xvfb libfontconfig wkhtmltopdf -y
 
 ## Step 8: Install Bench CLI [🔗](https://frappeframework.com/docs/v14/user/en/installation#install-bench-cli)
 
-Install bench via pip3
-```bash
-sudo apt install python3-pip -y
-```
+> Install bench via pip3, if you don't have it 
+>```bash
+>sudo apt install python3-pip -y
+>```
+
+**Start Here**
 ```bash
 sudo -H pip3 install frappe-bench
 ```
@@ -239,3 +247,49 @@ bench start
 ```
 
 Congratulations, you have installed bench on to your system.
+
+### STEP 9: create a site in frappe bench
+
+```bash
+bench new-site sitename.com
+```
+
+### [](https://github.com/D-codE-Hub/ERPNext-installation-Guide/blob/main/README.md#step-15-install-erpnext-latest-version-in-bench--site)STEP 10: Install ERPNext latest version in bench & site
+
+```bash
+bench get-app erpnext --branch version-14
+###OR
+bench get-app https://github.com/frappe/erpnext --branch version-14
+
+bench --site sitename.com install-app erpnext
+
+bench start
+```
+
+> If it says something along the line of:
+> 
+> > could not find app payments
+> 
+> Then install "payments" app separately 
+> `` bench get-app payments ``
+
+### Optional step for cratetind production setup
+
+### [](https://github.com/D-codE-Hub/ERPNext-installation-Guide/blob/main/README.md#step-16--create-a-new-user)STEP 11: Create a new user
+
+```bash
+sudo adduser erp-user
+sudo usermod -aG sudo erp-user
+sudo su - erp-user
+```
+### Follow the steps from Step 8 to Step 10
+
+### [](https://github.com/D-codE-Hub/ERPNext-installation-Guide/blob/main/README.md#step-17-setup-production)Step 12: setup production
+
+```bash
+sudo bench setup production example-frappe
+bench restart
+
+```
+
+Open the 0.0.0.0 or server IP in web browser and login to production server
